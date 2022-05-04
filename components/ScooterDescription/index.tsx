@@ -1,9 +1,9 @@
 import * as React from "react";
+
 import { Modal } from "../Modal/Modal";
+import { Scooter } from "../../entitites/Scooter";
 
 import { ScooterDescriptionListItem } from "./ScooterDescriptionListItem";
-
-import { Scooter } from "../../entitites/Scooter";
 
 export type ScooterDescriptionProps = {
   open: boolean;
