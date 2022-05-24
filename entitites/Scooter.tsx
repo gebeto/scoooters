@@ -19,3 +19,7 @@ export type Scooter = {
     lon: number;
   };
 };
+
+export const LVIV_CENTER: [number, number] = [
+  49.8360948918759, 24.025636129081246,
+];
