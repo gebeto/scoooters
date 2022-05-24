@@ -1,8 +1,9 @@
 import React from "react";
-import { Map, Marker, Point, ZoomControl } from "pigeon-maps";
+import Image from "next/image";
+import { Map, Marker, Point, ZoomControl, Overlay } from "pigeon-maps";
 
 import { Scooter } from "../../entitites/Scooter";
-import { ScooterMarker } from "../ScooterMarker";
+import { iconMapping } from "../ScooterMarker";
 
 export type ScootersMapProps = {
   scooters: Scooter[];
@@ -21,6 +22,22 @@ export const ScootersMap: React.FC<ScootersMapProps> = ({
     <Map defaultCenter={center} defaultZoom={13} maxZoom={18} minZoom={13}>
       {location && <Marker /* icon={locationMarker} */ anchor={location} />}
       {scooters.map((scooter) => (
+        <Overlay
+          key={scooter.id}
+          anchor={[scooter.location.lat, scooter.location.lon]}
+          offset={[18, 36]}
+        >
+          <Image
+            src={iconMapping[scooter.service]}
+            width={36}
+            height={36}
+            alt="scooter"
+            onClick={() => onScooterSelect(scooter)}
+          />
+        </Overlay>
+      ))}
+
+      {/* {scooters.map((scooter) => (
         <Marker
           key={scooter.id}
           anchor={[scooter.location.lat, scooter.location.lon]}
@@ -29,7 +46,7 @@ export const ScootersMap: React.FC<ScootersMapProps> = ({
             onScooterSelect(e.payload);
           }}
         />
-      ))}
+      ))} */}
       <ZoomControl />
     </Map>
   );
